@@ -1,0 +1,11 @@
+[submodule "Taro/vendor/GLFW"]
+	path = Taro/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+	branch = dev
+[submodule "Taro/vendor/imgui"]
+	path = Taro/vendor/imgui
+	url = https://github.com/TheCherno/imgui.git
+	branch = master
+[submodule "Taro/vendor/glm"]
+	path = Taro/vendor/glm
+	url = https://github.com/g-truc/glm.git
