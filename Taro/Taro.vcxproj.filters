@@ -16,14 +16,35 @@
     <Filter Include="src\Taro">
       <UniqueIdentifier>{92EA25CF-7EB7-80DA-A7D0-6E8293FCB568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Taro\Core">
+      <UniqueIdentifier>{2A7A723D-963A-EE73-5F75-37F1CBF43250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Taro\Debug">
+      <UniqueIdentifier>{881ACEEB-74E8-C1F1-5D7C-321849E99D56}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Taro\Events">
       <UniqueIdentifier>{36BE1B69-A249-892D-AB5A-0C221765E52D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Taro\ImGui">
       <UniqueIdentifier>{3C852CEC-2853-20F2-11E7-9018FD53FC56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Taro\Math">
+      <UniqueIdentifier>{ABBA773D-177B-F373-E0B5-3CF14C353850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Taro\Renderer">
+      <UniqueIdentifier>{7832FF15-E448-FDAB-2DC0-88CD9915CE33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Taro\Scene">
+      <UniqueIdentifier>{2F7DDCEC-1B4B-D0F2-04DF-4019F04BAC57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Taro\Utils">
+      <UniqueIdentifier>{72110AED-5EDF-FDF2-4773-6E1933E0D957}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -43,10 +64,34 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
@@ -54,14 +99,47 @@
     <ClInclude Include="src\Taro.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Application.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Core\Application.h">
+      <Filter>src\Taro\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Core.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Core\AssetsManager.h">
+      <Filter>src\Taro\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\EntryPoint.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Core\Core.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\EntryPoint.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Input.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\KeyCodes.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Layer.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\LayerStack.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Log.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\MouseButtonCodes.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Timestep.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Utils.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\Window.h">
+      <Filter>src\Taro\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Debug\Instrumentor.h">
+      <Filter>src\Taro\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Taro\Events\ApplicationEvent.h">
       <Filter>src\Taro\Events</Filter>
@@ -78,29 +156,110 @@
     <ClInclude Include="src\Taro\ImGui\ImGuiLayer.h">
       <Filter>src\Taro\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Input.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Math\Math.h">
+      <Filter>src\Taro\Math</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\KeyCodes.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\Buffer.h">
+      <Filter>src\Taro\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Layer.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\Camera.h">
+      <Filter>src\Taro\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\LayerStack.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\EditorCamera.h">
+      <Filter>src\Taro\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Log.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\FrameBuffer.h">
+      <Filter>src\Taro\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\MouseButtonCodes.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\GraphicsContext.h">
+      <Filter>src\Taro\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Taro\Window.h">
-      <Filter>src\Taro</Filter>
+    <ClInclude Include="src\Taro\Renderer\Light.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Material.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Mesh.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Model.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\OrthographicCamera.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\OrthographicCameraController.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\PerspectiveCamera.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\PerspectiveCameraController.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\RenderCommand.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Renderer.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Renderer2D.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Renderer3D.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\RendererAPI.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Shader.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\SkyBox.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\SubTexture2D.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Texture.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\UniformBuffer.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\Vertex.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Renderer\VertexArray.h">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\Components.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\Entity.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\Scene.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\SceneCamera.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\SceneSerializer.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Scene\ScriptableEntity.h">
+      <Filter>src\Taro\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Utils\PlatformUtils.h">
+      <Filter>src\Taro\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\trpch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1350,32 +1509,156 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Taro\Core\UUID.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Taro\Application.cpp">
-      <Filter>src\Taro</Filter>
+    <ClCompile Include="src\Taro\Core\Application.cpp">
+      <Filter>src\Taro\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Core\AssetsManager.cpp">
+      <Filter>src\Taro\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Core\Layer.cpp">
+      <Filter>src\Taro\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Core\LayerStack.cpp">
+      <Filter>src\Taro\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Core\Log.cpp">
+      <Filter>src\Taro\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\ImGui\ImGuiBuild.cpp">
+      <Filter>src\Taro\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Taro\ImGui\ImGuiLayer.cpp">
       <Filter>src\Taro\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Taro\Layer.cpp">
-      <Filter>src\Taro</Filter>
+    <ClCompile Include="src\Taro\Math\Math.cpp">
+      <Filter>src\Taro\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Taro\LayerStack.cpp">
-      <Filter>src\Taro</Filter>
+    <ClCompile Include="src\Taro\Renderer\Buffer.cpp">
+      <Filter>src\Taro\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Taro\Log.cpp">
-      <Filter>src\Taro</Filter>
+    <ClCompile Include="src\Taro\Renderer\EditorCamera.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\FrameBuffer.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Light.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Material.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Mesh.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Model.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\PerspectiveCamera.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\PerspectiveCameraController.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\RenderCommand.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Renderer.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Renderer2D.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Renderer3D.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\RendererAPI.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Shader.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Skybox.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\SubTexture2D.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\Texture.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\UniformBuffer.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Renderer\VertexArray.cpp">
+      <Filter>src\Taro\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Scene\Entity.cpp">
+      <Filter>src\Taro\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Scene\Scene.cpp">
+      <Filter>src\Taro\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Scene\SceneCamera.cpp">
+      <Filter>src\Taro\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Scene\SceneSerializer.cpp">
+      <Filter>src\Taro\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\trpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Taro\ImGui\ImGuiBuild.cpp" />
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Taro\Core\UUID.cpp" />
   </ItemGroup>
 </Project>

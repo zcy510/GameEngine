@@ -4,7 +4,7 @@
 #include "Taro/Events/KeyEvent.h"
 #include "Taro/Events/MouseEvent.h"
 #include "Taro/Events/ApplicationEvent.h"
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Taro {
 	static bool s_GLFWInitialized = false;
@@ -21,16 +21,22 @@ namespace Taro {
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		TR_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		TR_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		TR_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -39,6 +45,7 @@ namespace Taro {
 
 		if (!s_GLFWInitialized)
 		{
+			TR_PROFILE_SCOPE("glfwInit");
 			//glfwTerminate on system shutdown
 			int success = glfwInit();
 
@@ -47,10 +54,15 @@ namespace Taro {
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		TR_CORE_ASSERT(status, "Failed to initailize Glad!");
+		{
+			TR_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			m_Context = new OpenGLContext(m_Window);
+		}
+
+
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -141,17 +153,23 @@ namespace Taro {
 
 	void WindowsWindow::Shutdown()
 	{
+		TR_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		TR_PROFILE_FUNCTION();
+
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		TR_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

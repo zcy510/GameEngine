@@ -9,3 +9,15 @@
 [submodule "Taro/vendor/glm"]
 	path = Taro/vendor/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "Taro/vendor/Assimp"]
+	path = Taro/vendor/Assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "Taro/vendor/yaml-cpp"]
+	path = Taro/vendor/yaml-cpp
+	url = https://github.com/TheCherno/yaml-cpp.git
+[submodule "Taro/vendor/ImGuizmo"]
+	path = Taro/vendor/ImGuizmo
+	url = https://github.com/TheCherno/ImGuizmo.git
+[submodule "Taro/vendor/Box2D"]
+	path = Taro/vendor/Box2D
+	url = https://github.com/TheCherno/box2d.git

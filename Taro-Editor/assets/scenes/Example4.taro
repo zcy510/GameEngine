@@ -1,0 +1,39 @@
+Scene: Untitled
+Entities:
+  - Entity: 13200559269657708636
+    TagComponent:
+      Tag: Empty Entity
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 7169885404812887237
+    TagComponent:
+      Tag: touzi
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [3, 3, 1]
+    SpriteRendererComponent:
+      Color: [1, 1, 1, 1]
+      Texture: assets\textures\1.png
+      TilingFactorX: 3
+      TilingFactorY: 3
+  - Entity: 9905159450012195930
+    TagComponent:
+      Tag: camera
+    TransformComponent:
+      Translation: [0, 0, 8.19999981]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      Camera:
+        ProjectionType: 0
+        PerspectiveFOV: 0.785398185
+        PerspectiveNear: 0.00999999978
+        PerspectiveFar: 1000
+        OrthographicSize: 10
+        OrthographicNear: -1
+        OrthographicFar: 1
+        Primary: true
+        FixedAspectRatio: false

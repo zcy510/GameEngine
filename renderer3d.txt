@@ -1,0 +1,229 @@
+struct Renderer3DStorage
+{
+	Ref<VertexArray> CubeVertexArray;
+	Ref<Shader> TextureShader;
+	Ref<Texture2D> LightTexture;
+};
+
+static Renderer3DStorage* s_Data;
+
+void Renderer3D::Init()
+{
+	TR_PROFILE_FUNCTION();
+
+	s_Data = new Renderer3DStorage();
+	s_Data->CubeVertexArray = VertexArray::Create();
+
+	float CubeVertices[] = {
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 0.0f,  0.0f, -1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, -1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 0.0f,  0.0f, -1.0f,
+
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  0.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 0.0f,  0.0f,  1.0f,
+
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, -1.0f,  0.0f,  0.0f,
+
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  0.0f,  0.0f,
+
+		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f, -1.0f,  0.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f,  0.0f
+	};
+
+	Ref<VertexBuffer> squareVB;
+	squareVB = VertexBuffer::Create(CubeVertices, sizeof(CubeVertices));
+	squareVB->SetLayout({
+		{ ShaderDataType::Float3, "a_Position"},
+		{ ShaderDataType::Float2, "a_TexCoord"},
+		{ ShaderDataType::Float3, "a_Normal"}
+		});
+	s_Data->CubeVertexArray->AddVertexBuffer(squareVB);
+
+	uint32_t squareIndices[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35 };
+	Ref<IndexBuffer> squareIB;
+	squareIB = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
+	s_Data->CubeVertexArray->SetIndexBuffer(squareIB);
+
+	s_Data->LightTexture = Texture2D::Create(1, 1);
+	uint32_t LightTextureData = 0xffffffff;
+	s_Data->LightTexture->SetData(&LightTextureData, sizeof(uint32_t));
+
+	glm::vec3 pointLightPositions[] = {
+		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(2.3f, -3.3f, -4.0f),
+		glm::vec3(-4.0f,  2.0f, -12.0f),
+		glm::vec3(0.0f,  0.0f, -3.0f)
+	};
+
+	s_Data->TextureShader = Shader::Create("assets/shaders/MultiLight.glsl");
+	s_Data->TextureShader->Bind();
+	s_Data->TextureShader->SetInt("material.diffuse", 0);
+	s_Data->TextureShader->SetInt("material.specular", 1);
+	s_Data->TextureShader->SetFloat("material.shininess", 32.0f);
+
+	s_Data->TextureShader->SetFloat3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+	s_Data->TextureShader->SetFloat3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+	s_Data->TextureShader->SetFloat3("dirLight.diffuse", glm::vec3(0.4f, 0.4f, 0.4f));
+	s_Data->TextureShader->SetFloat3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+	// point light 1
+	s_Data->TextureShader->SetFloat3("pointLights[0].position", pointLightPositions[0]);
+	s_Data->TextureShader->SetFloat3("pointLights[0].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+	s_Data->TextureShader->SetFloat3("pointLights[0].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+	s_Data->TextureShader->SetFloat3("pointLights[0].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat("pointLights[0].constant", 1.0f);
+	s_Data->TextureShader->SetFloat("pointLights[0].linear", 0.09f);
+	s_Data->TextureShader->SetFloat("pointLights[0].quadratic", 0.032f);
+	// point light 2
+	s_Data->TextureShader->SetFloat3("pointLights[1].position", pointLightPositions[1]);
+	s_Data->TextureShader->SetFloat3("pointLights[1].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+	s_Data->TextureShader->SetFloat3("pointLights[1].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+	s_Data->TextureShader->SetFloat3("pointLights[1].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat("pointLights[1].constant", 1.0f);
+	s_Data->TextureShader->SetFloat("pointLights[1].linear", 0.09f);
+	s_Data->TextureShader->SetFloat("pointLights[1].quadratic", 0.032f);
+	// point light 3
+	s_Data->TextureShader->SetFloat3("pointLights[2].position", pointLightPositions[2]);
+	s_Data->TextureShader->SetFloat3("pointLights[2].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+	s_Data->TextureShader->SetFloat3("pointLights[2].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+	s_Data->TextureShader->SetFloat3("pointLights[2].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat("pointLights[2].constant", 1.0f);
+	s_Data->TextureShader->SetFloat("pointLights[2].linear", 0.09f);
+	s_Data->TextureShader->SetFloat("pointLights[2].quadratic", 0.032f);
+	// point light 4
+	s_Data->TextureShader->SetFloat3("pointLights[3].position", pointLightPositions[3]);
+	s_Data->TextureShader->SetFloat3("pointLights[3].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+	s_Data->TextureShader->SetFloat3("pointLights[3].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+	s_Data->TextureShader->SetFloat3("pointLights[3].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat("pointLights[3].constant", 1.0f);
+	s_Data->TextureShader->SetFloat("pointLights[3].linear", 0.09f);
+	s_Data->TextureShader->SetFloat("pointLights[3].quadratic", 0.032f);
+	// spotLight
+	s_Data->TextureShader->SetFloat3("spotLight.position", glm::vec3(0.0f, 0.0f, 5.0f));
+	s_Data->TextureShader->SetFloat3("spotLight.direction", glm::vec3(0.0f, 0.0f, -1.0f));
+	s_Data->TextureShader->SetFloat3("spotLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+	s_Data->TextureShader->SetFloat3("spotLight.diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	s_Data->TextureShader->SetFloat("spotLight.constant", 1.0f);
+	s_Data->TextureShader->SetFloat("spotLight.linear", 0.09f);
+	s_Data->TextureShader->SetFloat("spotLight.quadratic", 0.032f);
+	s_Data->TextureShader->SetFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+	s_Data->TextureShader->SetFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
+}
+
+void Renderer3D::Shutdown()
+{
+	TR_PROFILE_FUNCTION();
+
+	delete s_Data;
+}
+
+void Renderer3D::BeginScene(const PerspectiveCamera& camera)
+{
+	TR_PROFILE_FUNCTION();
+
+	s_Data->TextureShader->Bind();
+	s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+	s_Data->TextureShader->SetFloat3("viewPos", camera.GetPosition());
+	/*s_Data->TextureShader->SetFloat3("light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
+	s_Data->TextureShader->SetFloat3("light.diffuse", glm::vec3(0.5f, 0.5f, 0.5f));
+	s_Data->TextureShader->SetFloat3("light.specular", glm::vec3(1.0f, 1.0f, 1.0f));*/
+}
+
+void Renderer3D::EndScene()
+{
+	TR_PROFILE_FUNCTION();
+}
+
+void Renderer3D::DrawCube(const glm::vec3& position, const glm::vec3& size, const glm::vec4& color)
+{
+	TR_PROFILE_FUNCTION();
+
+	s_Data->TextureShader->SetFloat4("u_Color", color);
+	s_Data->LightTexture->Bind();
+
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
+	s_Data->TextureShader->SetMat4("u_Transform", transform);
+
+	s_Data->CubeVertexArray->Bind();
+	RenderCommand::DrawIndexed(s_Data->CubeVertexArray);
+}
+
+void Renderer3D::DrawCube(const glm::vec3& position, const glm::vec3& size, const Ref<Texture2D>& texture, const glm::vec4& tintcolor /*= glm::vec4(1.0f)*/)
+{
+	TR_PROFILE_FUNCTION();
+
+	s_Data->TextureShader->SetFloat4("u_Color", tintcolor);
+	texture->Bind();
+
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, size.z });
+	s_Data->TextureShader->SetMat4("u_Transform", transform);
+
+	s_Data->CubeVertexArray->Bind();
+	RenderCommand::DrawIndexed(s_Data->CubeVertexArray);
+}
+
+void Renderer3D::DrawCube(const glm::vec3& position, const glm::vec3& size, std::vector<Ref<Texture2D>> textureVec, const glm::vec4& tintcolor /*= glm::vec4(1.0f)*/)
+{
+	TR_PROFILE_FUNCTION();
+
+	s_Data->TextureShader->SetFloat4("u_Color", tintcolor);
+	for (auto& texture : textureVec)
+		texture->Bind();
+
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, size.z });
+	s_Data->TextureShader->SetMat4("u_Transform", transform);
+
+	s_Data->CubeVertexArray->Bind();
+	RenderCommand::DrawIndexed(s_Data->CubeVertexArray);
+}
+
+	color = vec4(0.0, 0.0, 0.0, 1.0);  // result buffer
+
+	vec3 directionalColor = CalcDirectionalLight(u_DirectionalLight);
+	color.rgb += directionalColor;
+
+	for(int i = 0; i < min(u_PointLightCount, MAX_POINT_LIGHT); i++)
+	{
+        color.rgb += CalcPointLight(u_PointLights[i]);
+	}
+
+	// TODO(islander): temporarily only one spot light
+	for(int i = 0; i < u_SpotLightCount; ++i)
+	{
+		color.rgb += CalcSpotLight(u_SpotLight);
+	}	
+
+	// emission
+	vec3 emission = texture(u_Material.emission, v_TexCoord).rgb;
+	color.rgb += emission;
+	
+	// clip to 1.0
+	color = min(color, vec4(1.0));
